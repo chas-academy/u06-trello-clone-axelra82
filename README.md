@@ -6,7 +6,7 @@ _Due date: March 11 2021_
 
 Build responsive frontend-driven kanban-board style app. No backend allowed (e.g. PHP, database etc).
 
-## Hand in
+## Handin
 
 Assignment has to be published in [the assigned repo](https://github.com/chas-academy/u06-trello-clone-axelra82) **and** referenced via url in [LMS](https://lms.chas.school/courses/47/assignments/165).
 
