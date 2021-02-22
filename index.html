@@ -21,12 +21,13 @@
 
 	<script>
 		$(function () {
-			$(".sortCols").sortable().disableSelection();
+			$(".sort-cols").sortable().disableSelection();
 
-			$(".sortCard").sortable({
-				connectWith: ".sortConnect",
+			$(".sort-card").sortable({
+				connectWith: ".sort-connect",
 			}).disableSelection();
 
+			$(".due-date").datepicker();
 		});
 	</script>
 
@@ -37,16 +38,16 @@
 	<section>
 		<h1>Lists</h1>
 		<button onclick="">+ list</button>
-		<ul class="sortCols lists-container">
+		<ul class="sort-cols lists-container">
 			<li class="list">
 				<h3 class="list-title">Todo</h3>
-				<ul class="sortCard sortConnect">
+				<ul class="sort-card sort-connect">
 					<li class="card">
 						<h4>Card #1 title (click card for dialog)</h4>
 						<p>
 							Description
 						</p>
-						<button>Datepicker for due date</button>
+						<input type="text" placeholder="Due date" class="due-date">
 						<button>Colorpicker</button>
 						<button>Archive (<strong>optional</strong>)</button>
 					</li>
@@ -56,7 +57,7 @@
 						<p>
 							Description
 						</p>
-						<button>Datepicker for due date</button>
+						<input type="text" placeholder="Due date" class="due-date">
 						<button>Colorpicker</button>
 						<button>Archive (<strong>optional</strong>)</button>
 					</li>
@@ -66,13 +67,13 @@
 
 			<li class="list">
 				<h3 class="list-title">Doing</h3>
-				<ul class="sortCard sortConnect">
+				<ul class="sort-card sort-connect">
 					<li class="card">
 						<h4>Card #3 title (click card for dialog)</h4>
 						<p>
 							Description
 						</p>
-						<button>Datepicker for due date</button>
+						<input type="text" placeholder="Due date" class="due-date">
 						<button>Colorpicker</button>
 						<button>Archive (<strong>optional</strong>)</button>
 					</li>
@@ -82,13 +83,13 @@
 
 			<li class="list">
 				<h3 class="list-title">Done</h3>
-				<ul class="sortCard sortConnect">
+				<ul class="sort-card sort-connect">
 					<li class="card">
 						<h4>Card #4 title (click card for dialog)</h4>
 						<p>
 							Description
 						</p>
-						<button>Datepicker for due date</button>
+						<input type="text" placeholder="Due date" class="due-date">
 						<button>Colorpicker</button>
 						<button>Archive (<strong>optional</strong>)</button>
 					</li>
@@ -98,7 +99,7 @@
 
 			<li class="list archive">
 				<h3>Archive (default hidden)(<strong>optional</strong>)</h3>
-				<ul class="sortCard sortConnect">
+				<ul class="sort-card sort-connect">
 					<li class="card">
 						<h4>Card #5 title</h4>
 						<p>
