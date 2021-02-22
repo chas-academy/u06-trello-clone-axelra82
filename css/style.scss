@@ -1,0 +1,50 @@
+$text-color-main: #313131;
+$card-background: #c3c3c3;
+$list-background: #f5f5f5;
+
+html {
+  font: 300 1rem/1.2rem "Nunito", sans-serif;
+  color: $text-color-main;
+}
+
+body {
+  margin: 2rem;
+}
+
+ul.lists-container {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-auto-columns: minmax(250px, 350px);
+  grid-auto-flow: column;
+  column-gap: 2rem;
+
+  li.list {
+    background: $list-background;
+
+    &.archive {
+      display: none;
+    }
+
+    .list-title {
+      text-align: center;
+      margin: 0;
+      padding: 1rem 0.75rem;
+      background: rgb(255, 148, 86);
+      color: white;
+    }
+
+    ul {
+      list-style: none;
+      padding: 1rem;
+      margin: 1rem;
+
+      .card {
+        margin: 1rem 0;
+        padding: 1rem;
+        background: $card-background;
+        border-radius: 0.25rem;
+      }
+    }
+  }
+}
