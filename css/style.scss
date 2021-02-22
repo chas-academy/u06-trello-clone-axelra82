@@ -1,10 +1,15 @@
-$text-color-main: #313131;
-$card-background: #c3c3c3;
-$list-background: #f5f5f5;
+// UI colors
+$black: #000000;
+$white: #ffffff;
+$smoke: #f5f5f5;
+$mango: #ffbe0bff;
+$orange-pantone: #fb5607ff;
+$winter-sky: #ff006eff;
+$blue-violet: #8338ecff;
+$azure: #3a86ffff;
 
 html {
   font: 300 1rem/1.2rem "Nunito", sans-serif;
-  color: $text-color-main;
 }
 
 body {
@@ -20,7 +25,7 @@ ul.lists-container {
   column-gap: 2rem;
 
   li.list {
-    background: $list-background;
+    background: $smoke;
 
     &.archive {
       display: none;
@@ -30,8 +35,6 @@ ul.lists-container {
       text-align: center;
       margin: 0;
       padding: 1rem 0.75rem;
-      background: rgb(255, 148, 86);
-      color: white;
     }
 
     ul {
@@ -42,9 +45,18 @@ ul.lists-container {
       .card {
         margin: 1rem 0;
         padding: 1rem;
-        background: $card-background;
         border-radius: 0.25rem;
       }
     }
   }
 }
+
+// Card Colors
+$light-pink: #ffadadff;
+$deep-champagne: #ffd6a5ff;
+$lemon-yellow-crayola: #fdffb6ff;
+$tea-green: #caffbfff;
+$celeste: #9bf6ffff;
+$baby-blue-eyes: #a0c4ffff;
+$maximum-blue-purple: #bdb2ffff;
+$mauve: #ffc6ffff;
