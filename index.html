@@ -8,28 +8,20 @@
 	<meta name="author" content="Axel Roussille Åberg">
 	<title>CAU06 - Trello style</title>
 	<!-- Linked -->
-	<link href="https://fonts.googleapis.com/css?family=Nunito:300,500,700" rel="stylesheet">
-	<!--link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+	<!-- <link href="https://fonts.googleapis.com/css?family=Nunito:300,500,700" rel="stylesheet">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
 		integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous">
-	</script-->
+	</script> -->
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<!-- Local -->
 	<link rel="stylesheet" href="css/style.min.css">
-
-	<script>
-		$(function () {
-			$(".sort-cols").sortable().disableSelection();
-
-			$(".sort-card").sortable({
-				connectWith: ".sort-connect",
-			}).disableSelection();
-
-			$(".due-date").datepicker();
-		});
-	</script>
+	<script defer src="/js/ui.js"></script>
+	<script defer src="/js/data.js"></script>
+	<script defer src="/js/functions.js"></script>
+	<script defer src="/js/init.js"></script>
 
 </head>
 
@@ -37,87 +29,30 @@
 
 	<section>
 		<h1>Lists</h1>
-		<button onclick="">+ list</button>
-		<ul class="sort-cols lists-container">
-			<li class="list">
-				<h3 class="list-title">Todo</h3>
-				<ul class="sort-card sort-connect">
-					<li class="card">
-						<h4>Card #1 title (click card for dialog)</h4>
-						<p>
-							Description
-						</p>
-						<input type="text" placeholder="Due date" class="due-date">
-						<button>Colorpicker</button>
-						<button>Archive (<strong>optional</strong>)</button>
-					</li>
-
-					<li class="card">
-						<h4>Card #2 title (click card for dialog)</h4>
-						<p>
-							Description
-						</p>
-						<input type="text" placeholder="Due date" class="due-date">
-						<button>Colorpicker</button>
-						<button>Archive (<strong>optional</strong>)</button>
-					</li>
-				</ul>
-				<button>+ card</button>
-			</li>
-
-			<li class="list">
-				<h3 class="list-title">Doing</h3>
-				<ul class="sort-card sort-connect">
-					<li class="card">
-						<h4>Card #3 title (click card for dialog)</h4>
-						<p>
-							Description
-						</p>
-						<input type="text" placeholder="Due date" class="due-date">
-						<button>Colorpicker</button>
-						<button>Archive (<strong>optional</strong>)</button>
-					</li>
-				</ul>
-				<button>+ card</button>
-			</li>
-
-			<li class="list">
-				<h3 class="list-title">Done</h3>
-				<ul class="sort-card sort-connect">
-					<li class="card">
-						<h4>Card #4 title (click card for dialog)</h4>
-						<p>
-							Description
-						</p>
-						<input type="text" placeholder="Due date" class="due-date">
-						<button>Colorpicker</button>
-						<button>Archive (<strong>optional</strong>)</button>
-					</li>
-				</ul>
-				<button>+ card</button>
-			</li>
-
-			<li class="list archive">
-				<h3>Archive (default hidden)(<strong>optional</strong>)</h3>
-				<ul class="sort-card sort-connect">
-					<li class="card">
-						<h4>Card #5 title</h4>
-						<p>
-							Description
-						</p>
-						<button>Unarchive</button>
-					</li>
-				</ul>
-			</li>
-		</ul>
+		<button id="add-list-btn">+ list</button>
+		<ul id="lists-container" class="sort-list"></ul>
 	</section>
 
 	<section>
+		<h3>Board actions</h3>
+		<div>
+			<button>Show archived cards</button>
+		</div>
+		<div>
+			<button onclick="localStorage.clear(), location.reload()">Reset to default</button>
+		</div>
+		<h4>Save</h4>
 		<p>
-			<strong>optional</strong>
+			This board is automatically saved to your browsers local storage. If you want to download a copy for upload
+			in another browser, use the options below.
 		</p>
-		<button>Save board (localStorage)</button>
-		<button>Show archived cards</button>
+		<div>
+			<button id="save-board-btn">Save board</button>
+		</div>
+		<div>
+			<input type="file" id="upload-board-btn" />
+		</div>
+		<button id="load-board-btn">Load board</button>
 	</section>
 
 </body>
