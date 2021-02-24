@@ -8,6 +8,16 @@ $winter-sky: #ff006eff;
 $blue-violet: #8338ecff;
 $azure: #3a86ffff;
 
+// Card Colors
+$light-pink: #ffadadff;
+$deep-champagne: #ffd6a5ff;
+$lemon-yellow-crayola: #fdffb6ff;
+$tea-green: #caffbfff;
+$celeste: #9bf6ffff;
+$baby-blue-eyes: #a0c4ffff;
+$maximum-blue-purple: #bdb2ffff;
+$mauve: #ffc6ffff;
+
 html {
   font: 300 1rem/1.2rem "Nunito", sans-serif;
 }
@@ -16,7 +26,12 @@ body {
   margin: 2rem;
 }
 
-ul.lists-container {
+.ui-state-highlight {
+  background: $winter-sky;
+  height: 3rem;
+}
+
+ul#lists-container {
   list-style: none;
   padding: 0;
   display: grid;
@@ -31,10 +46,11 @@ ul.lists-container {
       display: none;
     }
 
-    .list-title {
+    .list-header {
       text-align: center;
       margin: 0;
       padding: 1rem 0.75rem;
+      color: $white;
     }
 
     ul {
@@ -42,21 +58,86 @@ ul.lists-container {
       padding: 1rem;
       margin: 1rem;
 
-      .card {
+      .task {
         margin: 1rem 0;
         padding: 1rem;
         border-radius: 0.25rem;
+
+        .color-palettes {
+          display: flex;
+          flex-flow: wrap;
+          list-style: none;
+          padding: 0;
+          margin: 1rem 0;
+
+          li {
+            margin: 0 0.5rem 0.5rem 0;
+
+            div {
+              width: 1.5rem;
+              height: 1.5rem;
+              border-radius: 50%;
+
+              &.current {
+                border: 1px dashed $black;
+                // box-shadow: 0 0 0.15rem 0.05rem rgba($black, 0.15);
+              }
+            }
+          }
+        }
       }
     }
   }
 }
 
-// Card Colors
-$light-pink: #ffadadff;
-$deep-champagne: #ffd6a5ff;
-$lemon-yellow-crayola: #fdffb6ff;
-$tea-green: #caffbfff;
-$celeste: #9bf6ffff;
-$baby-blue-eyes: #a0c4ffff;
-$maximum-blue-purple: #bdb2ffff;
-$mauve: #ffc6ffff;
+.mango {
+  background: $mango;
+}
+
+.orange-pantone {
+  background: $orange-pantone;
+}
+
+.winter-sky {
+  background: $winter-sky;
+}
+
+.blue-violet {
+  background: $blue-violet;
+}
+
+.azure {
+  background: $azure;
+}
+
+.light-pink {
+  background: $light-pink;
+}
+
+.deep-champagne {
+  background: $deep-champagne;
+}
+
+.lemon-yellow-crayola {
+  background: $lemon-yellow-crayola;
+}
+
+.tea-green {
+  background: $tea-green;
+}
+
+.celeste {
+  background: $celeste;
+}
+
+.baby-blue-eyes {
+  background: $baby-blue-eyes;
+}
+
+.maximum-blue-purple {
+  background: $maximum-blue-purple;
+}
+
+.mauve {
+  background: $mauve;
+}
