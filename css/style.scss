@@ -26,6 +26,10 @@ body {
   margin: 2rem;
 }
 
+.hidden {
+  display: none;
+}
+
 .ui-state-highlight {
   background: $winter-sky;
   height: 3rem;
