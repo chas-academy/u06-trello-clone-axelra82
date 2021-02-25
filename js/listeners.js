@@ -114,6 +114,11 @@ $('#lists-container').on('click', 'button.add-task-btn', e => {
 	$(e.target).parents('.list').children('ul').append(renderTask(task));
 });
 
+// Archive task
+$('#lists-container').on('click', 'button.archive-task-btn', e => {
+	
+});
+
 // Delete task
 $('#lists-container').on('click', 'button.delete-task-btn', e => {
 	const accept = confirm('Are yuou sure you want to delete the task? This can not be undone.');
