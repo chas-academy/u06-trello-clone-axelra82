@@ -48,4 +48,9 @@ const defaultLists = [
 			},
 		]
 	},
+	{
+		title: 'Archive',
+		color: 'orange-pantone',
+		tasks: []
+	},
 ]

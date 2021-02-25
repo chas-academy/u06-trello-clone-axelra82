@@ -47,7 +47,7 @@ const renderTask = (task) => {
 }
 
 const renderList = (list) => {
-	const listItem = $('<li>').addClass('list').attr('data-id', list.id);
+	const listItem = $('<li>').addClass('list');
 	const listHeader = $('<h3>').addClass(`list-header ${list.color}`).text(list.title);
 	const taskList = $('<ul>').addClass('sort-task sort-connect');
 	const newTaskBtn = $('<button>').addClass('add-task-btn').text('+ task');
@@ -65,6 +65,6 @@ const renderList = (list) => {
 	listItem.append(deleteListBtn);
 
 	makeSortable();
-	
+
 	return listItem;
 }
