@@ -2,54 +2,45 @@
 LISTENERS
 *******************************/
 
-// Save current board to localStorage
-const saveLocalStore = () => {
-	store.set(store.lists());
-}
-
 // Save current board JSON file
 $('#save-board-btn').on('click', e => {
-	e.preventDefault();
-	
-	const dl = document.createElement('a');
-    const file = new Blob(
+
+	const file = document.createElement('a');
+    const fileBlob = new Blob(
 		[JSON.stringify(store.lists())],
 		{
 			type: 'application/json'
 		}
 	);
-    dl.href = URL.createObjectURL(file);
-    dl.download = 'my-trello-clone-board.json';
-    dl.click();
+    file.href = URL.createObjectURL(fileBlob);
+    file.download = 'my-trello-clone-board.json';
+    file.click();
 });
 
 // Load board from JSON file
 $('#load-board-btn').on('click', e => {
-	e.preventDefault();
-
+	
 	if (!window.File || !window.FileReader || !window.FileList || !window.Blob) {
-		alert('The File APIs are not fully supported in this browser.');
+		alert('The File APIs are not fully supported in this browser. Bummer :(');
 		return;
 	}   
 	
 	const input = document.querySelector('#upload-board-btn');
 	
-	if (!input) {
-		alert("Couldn't find fileinput element");
-	} else if (!input.files) {
-		alert("Browser appears to not support 'files' property of file input");
+	if (!input.files) {
+		alert('Browser appears to not support \'files\' property of file input');
 	} else if (!input.files[0]) {
-		alert("Please select a file");               
+		alert('Please select a file first');
 	} else {
 		const file = input.files[0];
 		const reader = new FileReader();
 		reader.readAsText(file);
 		reader.onload = () => {
-			// Replace existing  data
-			store.set(reader.result);
+			// Replace existing data
+			store.set(JSON.parse(reader.result));
 			
-			// Reset file upload
-			input.value = '';
+			// Refresh page
+			location.reload();
 		};
 	}
 });
