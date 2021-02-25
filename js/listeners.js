@@ -66,28 +66,24 @@ $('#add-list-btn').on('click', e => {
 		tasks: []
 	};
 	
+	// Mutate lists array
 	store.update(list, 'addList');
 
+	// Visualize
 	const newList = renderList(list);
 	$('#lists-container').append(newList);
-
-	makeSortable();
 });
 
 // Delete list
-$('#lists-container').on('click', 'button.delete-list-btn', (e) => {
-	e.preventDefault();
-
+$('#lists-container').on('click', 'button.delete-list-btn', e => {
 	const accept = confirm('This will delete list and all tasks');
 	
 	if(accept){
-		const list = e.target.parentNode;
-		const listId = getSourceListId(e);
-		const lists = store.lists();
+		// Mutate lists array
+		store.update(e, 'deleteList');
 		
-		lists.splice(listId, 1);
-		store.set(lists);
-
+		// Visualize
+		const list = e.target.parentNode;
 		list.remove();
 	}
 });

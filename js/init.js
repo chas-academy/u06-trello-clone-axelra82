@@ -3,13 +3,18 @@
 const store = {
 	name: 'chas-trello-clone-axelra82',
 	default: defaultLists,
-	update(data, action = null){
+	update(data = {}, action = null){
 		
 		let lists = this.lists();
 		
 		switch (action) {
-			case 'addList':		
+			case 'addList':
 				lists.push(data);
+				break;
+
+			case 'deleteList':
+				const listId = getSourceListId(data);
+				lists.splice(listId, 1);
 				break;
 
 			case 'addTask':
@@ -17,7 +22,7 @@ const store = {
 				const currentList = lists.find(list => list.id == id);
 				currentList.tasks.push(task);
 				break;
-				
+			
 			default:
 				break;
 		}

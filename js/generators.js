@@ -62,5 +62,6 @@ const renderList = (list) => {
 	listItem.append(newTaskBtn);
 	listItem.append(deleteListBtn);
 
+	makeSortable();
 	return listItem;
 }
