@@ -56,8 +56,6 @@ $('#load-board-btn').on('click', e => {
 
 // Create new list
 $('#add-list-btn').on('click', e => {
-	e.preventDefault();
-
 	const title = prompt('List title', 'Some title');
 	const list = {
 		id: store.lists().length + 1,
@@ -88,18 +86,12 @@ $('#lists-container').on('click', 'button.delete-list-btn', e => {
 	}
 });
 
-// Add task to list
+// Create new task
 $('#lists-container').on('click', 'button.add-task-btn', e => {
-	e.preventDefault();
-
 	const title = prompt('Task title', 'Do something');
 	const body = prompt('Task description', 'Describe it');
 	
-	const listId = e.target.parentNode.dataset.id;
-	const list = store.lists().find(list => list.id == listId);
-
 	const task = {
-		id: list.tasks.length + 1,
 		title: title,
 		body: body,
 		date: null,
@@ -108,7 +100,7 @@ $('#lists-container').on('click', 'button.add-task-btn', e => {
 
 	store.update(
 		{
-			id: listId,
+			id: getSourceListId(e),
 			task: task
 		},
 		'addTask'

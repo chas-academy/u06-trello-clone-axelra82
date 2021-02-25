@@ -19,7 +19,7 @@ const store = {
 
 			case 'addTask':
 				const {id, task} = data;
-				const currentList = lists.find(list => list.id == id);
+				const currentList = lists[id];
 				currentList.tasks.push(task);
 				break;
 			
