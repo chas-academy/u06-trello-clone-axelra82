@@ -19,6 +19,11 @@ const listColors = [
 
 const defaultLists = [
 	{
+		title: 'Archive',
+		color: 'black',
+		tasks: []
+	},
+	{
 		title: 'Todo',
 		color: 'azure',
 		tasks: [
@@ -47,10 +52,5 @@ const defaultLists = [
 				color: taskColors[7],
 			},
 		]
-	},
-	{
-		title: 'Archive',
-		color: 'orange-pantone',
-		tasks: []
 	},
 ]
