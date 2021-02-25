@@ -75,6 +75,8 @@ $('#add-list-btn').on('click', e => {
 	// Visualize
 	const newList = renderList(list);
 	$('#lists-container').append(newList);
+
+	makeSortable();
 });
 
 // Delete list
@@ -116,15 +118,21 @@ $('#lists-container').on('click', 'button.add-task-btn', e => {
 
 // Archive task
 $('#lists-container').on('click', 'button.archive-task-btn', e => {
-	const task = e.target.closest('.task');
-	const taskId = Array.from(task.closest('ul').children).indexOf(task);
-
+	const taskEl = e.target.closest('.task');
+	const taskId = Array.from(taskEl.closest('ul').children).indexOf(taskEl);
 	const sourceListId = getSourceListId(e);
-	const targetListId = getTargetListId(e);
 
-	// console.log(taskId);
-	console.log(sourceListId);
-	console.log(targetListId);
+	const lists = store.lists();
+	const taskObject = lists[sourceListId].tasks[taskId];
+
+	// Mutate lists
+	lists[sourceListId].tasks.splice(taskId, 1);
+	lists[0].tasks.push(taskObject);
+	store.set(lists);
+
+	// Visualize
+	$('#lists-container').find('.archive ul').append(taskEl);
+
 });
 
 // Delete task
