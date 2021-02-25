@@ -18,10 +18,10 @@ This assignment does not take aesthetics or design in to account. You will only 
 
 User should be able to:
 
-- drag card between three columns (todo, doing, done), minimum
-- click card to see card content (dialog)
-- see multiple tabs in card for more info
-- set card deadline (datepicker)
+- drag task between three lists (todo, doing, done), minimum
+- click task to see task content (dialog)
+- see multiple tabs in task for more info
+- set task deadline (datepicker)
 
 ## Requirements
 
@@ -39,8 +39,8 @@ Final product must use:
 
 To demonstrate deeper understanding of jQuery, jQuery UI and CSS-frameworks you can add some or all of the following options which will allow a user to:
 
-- create new cards
-- create new column (list) that can house cards
-- change color of cards
-- archive cards (i.e. card gets saved in a seperate archive)
+- create new tasks
+- create new list that can house tasks
+- change color of tasks
+- archive tasks (i.e. task gets saved in a seperate archive)
 - save board. **Suggestion!** Use localStorage and/or as JSON-file for later upload.
