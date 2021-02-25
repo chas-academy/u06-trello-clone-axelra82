@@ -2,6 +2,16 @@
 LISTENERS
 *******************************/
 
+$('#show-archive').on('click', e => {
+	$('#lists-container').find('.hidden').removeClass('hidden');
+	e.target.disabled = true;
+});
+
+$('#reset-board').on('click', () => {
+	localStorage.clear();
+	location.reload();
+});
+
 // Save current board JSON file
 $('#save-board-btn').on('click', e => {
 
