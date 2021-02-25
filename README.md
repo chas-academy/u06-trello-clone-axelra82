@@ -18,29 +18,29 @@ This assignment does not take aesthetics or design in to account. You will only 
 
 User should be able to:
 
-- drag task between three lists (todo, doing, done), minimum
-- click task to see task content (dialog)
-- see multiple tabs in task for more info
-- set task deadline (datepicker)
+- [x] ~~drag task between three lists (todo, doing, done), minimum~~
+- [ ] click task to see task content (dialog)
+- [ ] see multiple tabs in task for more info
+- [ ] set task deadline (datepicker)
 
 ## Requirements
 
 Final product must use:
 
-- jQuery UI [datepicker](https://jqueryui.com/datepicker/)
-- jQuery UI [draggable](https://jqueryui.com/draggable/), [droppable](https://jqueryui.com/droppable/) or [sortable](https://jqueryui.com/sortable/)
-- jQuery UI [dialog](https://jqueryui.com/dialog/)
-- jQuery UI [tabs](https://jqueryui.com/tabs/)
-- minimum two optional effect from [JQuery UI](https://jqueryui.com)
-- at least one feature with a simple JQuery UI Widget
-- layout/disposition from optional CSS-framework
+- [ ] jQuery UI [datepicker](https://jqueryui.com/datepicker/)
+- [x] ~~jQuery UI [draggable](https://jqueryui.com/draggable/), [droppable](https://jqueryui.com/droppable/) or [sortable](https://jqueryui.com/sortable/)~~
+- [ ] jQuery UI [dialog](https://jqueryui.com/dialog/)
+- [ ] jQuery UI [tabs](https://jqueryui.com/tabs/)
+- [ ] minimum two optional effect from [JQuery UI](https://jqueryui.com)
+- [ ] at least one feature with a simple JQuery UI Widget
+- [ ] layout/disposition from optional CSS-framework
 
 ## Challenge goals
 
 To demonstrate deeper understanding of jQuery, jQuery UI and CSS-frameworks you can add some or all of the following options which will allow a user to:
 
-- create new tasks
-- create new list that can house tasks
-- change color of tasks
-- archive tasks (i.e. task gets saved in a seperate archive)
-- save board. **Suggestion!** Use localStorage and/or as JSON-file for later upload.
+- [x] ~~create new tasks~~
+- [x] ~~create new list that can house tasks~~
+- [ ] change color of tasks
+- [ ] archive tasks (i.e. task gets saved in a seperate archive)
+- [x] ~~save board. **Suggestion!** Use localStorage and/or as JSON-file for later upload.~~
