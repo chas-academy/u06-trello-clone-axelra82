@@ -8,7 +8,7 @@ $('#show-archive').on('click', e => {
 });
 
 $('#reset-board').on('click', () => {
-	const accept = prompt('This action can not be undone and will reset the board to its defauilt state (i.e. deleting eveything). Are you sure you want to continue?')
+	const accept = confirm('This action can not be undone and will reset the board to its defauilt state (i.e. deleting eveything). Are you sure you want to continue?')
 
 	if(accept){
 		localStorage.clear();
