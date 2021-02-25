@@ -47,7 +47,8 @@ const renderTask = (task) => {
 }
 
 const renderList = (list) => {
-	const listItem = $('<li>').addClass('list');
+	const hidden = list.title.toLowerCase() === 'archive';
+	const listItem = $('<li>').addClass(`list ${hidden ? 'hidden' : ''}`);
 	const listHeader = $('<h3>').addClass(`list-header ${list.color}`).text(list.title);
 	const taskList = $('<ul>').addClass('sort-task sort-connect');
 	const newTaskBtn = $('<button>').addClass('add-task-btn').text('+ task');
