@@ -8,8 +8,12 @@ $('#show-archive').on('click', e => {
 });
 
 $('#reset-board').on('click', () => {
-	localStorage.clear();
-	location.reload();
+	const accept = prompt('This action can not be undone and will reset the board to its defauilt state (i.e. deleting eveything). Are you sure you want to continue?')
+
+	if(accept){
+		localStorage.clear();
+		location.reload();
+	}
 });
 
 // Save current board JSON file
