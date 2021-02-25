@@ -60,6 +60,7 @@ $('#add-list-btn').on('click', e => {
 
 	const title = prompt('List title', 'Some title');
 	const list = {
+		id: store.lists().length + 1,
 		title,
 		color: listColors[Math.floor(Math.random() * listColors.length)],
 		tasks: []
@@ -67,7 +68,7 @@ $('#add-list-btn').on('click', e => {
 	
 	store.update(list, 'addList');
 
-	const newList = renderList(list, store.lists().length-1);
+	const newList = renderList(list);
 	$('#lists-container').append(newList);
 
 	makeSortable();
@@ -78,8 +79,12 @@ $('#lists-container').on('click', 'button.delete-list-btn', (e) => {
 	e.preventDefault();
 
 	const accept = confirm('This will delete list and all tasks');
+	
 	if(accept){
-		deleteList($(e.target).parents('li'));
+		const list = e.target.parentNode;
+		const listId = list.dataset.id - 1;
+		store.update(listId, 'deleteList');
+		list.remove();
 	}
 });
 
@@ -89,16 +94,25 @@ $('#lists-container').on('click', 'button.add-task-btn', e => {
 
 	const title = prompt('Task title', 'Do something');
 	const body = prompt('Task description', 'Describe it');
+	
+	const listId = e.target.parentNode.dataset.id;
+	const list = store.lists().find(list => list.id == listId);
 
 	const task = {
+		id: list.tasks.length + 1,
 		title: title,
 		body: body,
 		date: null,
 		color: taskColors[Math.floor(Math.random() * taskColors.length)]
 	};
 
-	const listId = $(e.target).parents('.list').attr('id');
-	store.update({id: listId, task: task}, 'addTask');
+	store.update(
+		{
+			id: listId,
+			task: task
+		},
+		'addTask'
+	);
 
 	$(e.target).parents('.list').children('ul').append(renderTask(task));
 });

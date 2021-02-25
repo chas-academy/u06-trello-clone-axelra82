@@ -14,11 +14,12 @@ const store = {
 
 			case 'addTask':
 				const {id, task} = data;
-				const currentList = lists[id];
+				const currentList = lists.find(list => list.id == id);
 				currentList.tasks.push(task);
 				break;
 			
-			case 'remove':
+			case 'deleteList':
+				lists.find(list => list.id == data)
 				lists.splice(data, 1);
 				break;
 		

@@ -19,41 +19,38 @@ const listColors = [
 
 const defaultLists = [
 	{
+		id: 1,
 		title: 'Todo',
 		color: 'azure',
 		tasks: [
 			{
+				id: 1,
 				title: 'Something that needs doing',
-				body: 'Tempor et no est labore amet, vero ipsum sit no sea accusam dolor, sed ut takimata sed duo sed sanctus',
-				date: null,
 				color: taskColors[2],
-				archive: false
 			},
 		]
 	},
 	{
+		id: 2,
 		title: 'Doing',
 		color: 'mango',
 		tasks: [
 			{
+				id: 1,
 				title: 'Something that is currently being worked on',
-				body: 'Tempor et no est labore amet, vero ipsum sit no sea accusam dolor, sed ut takimata sed duo sed sanctus',
-				date: null,
 				color: taskColors[5],
-				archive: false
 			},
 		]
 	},
 	{
+		id: 3,
 		title: 'Done',
 		color: 'blue-violet',
 		tasks: [
 			{
+				id: 1,
 				title: 'Something that is done',
-				body: 'Tempor et no est labore amet, vero ipsum sit no sea accusam dolor, sed ut takimata sed duo sed sanctus',
-				date: null,
 				color: taskColors[7],
-				archive: false
 			},
 		]
 	},

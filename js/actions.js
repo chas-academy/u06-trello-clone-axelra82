@@ -9,10 +9,3 @@ const populateLists = (lists) => {
 
 	makeSortable();
 }
-
-const deleteList = (list) => {
-	const listId = list.attr('id');
-
-	store.update(listId, 'remove');
-	list.remove();
-}
