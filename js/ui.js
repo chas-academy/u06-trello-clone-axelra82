@@ -1,42 +1,81 @@
 const makeSortable = () => {
 	$(".sort-task, .sort-list").sortable({
+		tolerance: "pointer",
 		connectWith: ".sort-connect",
 		placeholder: "ui-state-highlight",
-		tolerance: "pointer",
+	});
+
+	//Lists
+	$(".sort-list").sortable({
+		start: (e, ui) => {
+			ui.item.data('listIndex', ui.item.index());
+		},
+		stop: (e, ui) => {
+			// Source
+			const sourceListId = ui.item.data('listIndex');
+			
+			// Target
+			const targetListId = getTargetListId(e);
+			
+			// Detect changes
+			if (targetListId !== sourceListId) {
+				const lists = store.lists();
+
+				// List
+				const listObject = lists[sourceListId];
+
+				// Change detected
+				// Mutate lists
+				lists.splice(sourceListId, 1);
+				lists.splice(targetListId, 0, listObject);
+
+				store.set(lists);
+			}
+		},
+	}).disableSelection();
+
+	// Tasks
+	$(".sort-task").sortable({
 		start: (e, ui) => {
 			ui.item.data('taskIndex', ui.item.index());
 		},
 		stop: (e, ui) => {
-			const lists = store.lists();
 			// Sources
-			const sourceListId = e.target.parentNode.dataset.id;
+			const sourceListId = getSourceListId(e);
 			const sourceTaskIndex = ui.item.data('taskIndex');
 
 			// Targets
-			const targetListId = $(e.toElement).parents('.list').attr('data-id');
+			const targetListId = getTargetListId(e);
 			const targetTaskIndex = ui.item.index();
-
-			// Task
-			const taskObject = lists.find(list => list.id == sourceListId).tasks[
-				sourceTaskIndex];
-
-			// Mutable Lists
-			const sourceList = lists.find(list => list.id == sourceListId);
-			const targetList = lists.find(list => list.id == targetListId);
 
 			// Detect changes
 			const listDetect = sourceListId !== targetListId;
 			const taskDetect = sourceTaskIndex !== targetTaskIndex;
 
 			if (listDetect || taskDetect) {
+				const lists = store.lists();
+
+				// Task
+				const taskObject = lists[sourceListId].tasks[sourceTaskIndex];
+
 				// Change detected
 				// Mutate lists
-				sourceList.tasks.splice(sourceTaskIndex, 1);
-				targetList.tasks.splice(targetTaskIndex, 0, taskObject);
+				lists[sourceListId].tasks.splice(sourceTaskIndex, 1);
+				lists[targetListId].tasks.splice(targetTaskIndex, 0, taskObject);
 
 				store.set(lists);
 			}
 		},
 	}).disableSelection();
 	return;
+}
+
+const getSourceListId = e => {
+	const sourceList = e.target.closest('.list');
+	return Array.from(sourceList.closest('ul').children).indexOf(sourceList);
+}
+
+const getTargetListId = e => {
+	const targetList = e.toElement.closest('.list');
+	return Array.from(targetList.closest('ul').children).indexOf(targetList);
 }
