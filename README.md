@@ -33,7 +33,7 @@ Final product must use:
 - [ ] jQuery UI [tabs](https://jqueryui.com/tabs/)
 - [ ] minimum two optional effect from [JQuery UI](https://jqueryui.com)
 - [ ] at least one feature with a simple JQuery UI Widget
-- [ ] layout/disposition from optional CSS-framework
+- [x] layout/disposition from optional CSS-framework
 
 ## Challenge goals
 
@@ -42,5 +42,5 @@ To demonstrate deeper understanding of jQuery, jQuery UI and CSS-frameworks you 
 - [x] ~~create new tasks~~
 - [x] ~~create new list that can house tasks~~
 - [ ] change color of tasks
-- [ ] archive tasks (i.e. task gets saved in a seperate archive)
+- [x] archive tasks (i.e. task gets saved in a seperate archive)
 - [x] ~~save board. **Suggestion!** Use localStorage and/or as JSON-file for later upload.~~
