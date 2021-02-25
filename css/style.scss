@@ -46,10 +46,6 @@ ul#lists-container {
   li.list {
     background: $smoke;
 
-    &.archive {
-      display: none;
-    }
-
     .list-header {
       text-align: center;
       margin: 0;

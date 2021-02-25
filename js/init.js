@@ -23,6 +23,11 @@ const store = {
 				currentList.tasks.push(addTask);
 				break;
 			
+			case 'archiveTask':
+				
+				// lists[getSourceListId(e)].tasks.splice(taskId, 1);
+				break;
+			
 			case 'deleteTask':
 				const {e, task: deleteTask} = data;
 				const taskId = Array.from(deleteTask.closest('ul').children).indexOf(deleteTask);

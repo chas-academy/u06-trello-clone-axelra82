@@ -3,7 +3,7 @@ LISTENERS
 *******************************/
 
 $('#show-archive').on('click', e => {
-	$('#lists-container').find('.hidden').removeClass('hidden');
+	$('#lists-container').find('.archive').removeClass('hidden');
 	e.target.disabled = true;
 });
 
@@ -116,7 +116,15 @@ $('#lists-container').on('click', 'button.add-task-btn', e => {
 
 // Archive task
 $('#lists-container').on('click', 'button.archive-task-btn', e => {
-	
+	const task = e.target.closest('.task');
+	const taskId = Array.from(task.closest('ul').children).indexOf(task);
+
+	const sourceListId = getSourceListId(e);
+	const targetListId = getTargetListId(e);
+
+	// console.log(taskId);
+	console.log(sourceListId);
+	console.log(targetListId);
 });
 
 // Delete task
