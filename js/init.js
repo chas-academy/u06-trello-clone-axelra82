@@ -16,11 +16,17 @@ const store = {
 				const listId = getSourceListId(data);
 				lists.splice(listId, 1);
 				break;
-
+			
 			case 'addTask':
-				const {id, task} = data;
+				const {id, task: addTask} = data;
 				const currentList = lists[id];
-				currentList.tasks.push(task);
+				currentList.tasks.push(addTask);
+				break;
+			
+			case 'deleteTask':
+				const {e, task: deleteTask} = data;
+				const taskId = Array.from(deleteTask.closest('ul').children).indexOf(deleteTask);
+				lists[getSourceListId(e)].tasks.splice(taskId, 1);
 				break;
 			
 			default:

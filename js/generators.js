@@ -31,6 +31,7 @@ const renderTask = (task) => {
 	// .datepicker();
 	// const taskColor = $('<button>').addClass('btn').text('Colorpicker');
 	// const taskArchive = $('<button>').addClass('btn').text('Archive');
+	const deleteTaskBtn = $('<button>').addClass('delete-task-btn').text('Delete task');
 
 	taskItem.append(taskTitle);
 	// taskItem.append(taskBody);
@@ -38,6 +39,7 @@ const renderTask = (task) => {
 	// // taskItem.append(taskColor);
 	// taskItem.append(colorPaletts(task.color));
 	// taskItem.append(taskArchive);
+	taskItem.append(deleteTaskBtn);
 	
 	makeSortable();
 	
@@ -63,5 +65,6 @@ const renderList = (list) => {
 	listItem.append(deleteListBtn);
 
 	makeSortable();
+	
 	return listItem;
 }

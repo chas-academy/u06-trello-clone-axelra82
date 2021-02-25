@@ -74,14 +74,14 @@ $('#add-list-btn').on('click', e => {
 
 // Delete list
 $('#lists-container').on('click', 'button.delete-list-btn', e => {
-	const accept = confirm('This will delete list and all tasks');
+	const accept = confirm('Are you sure you want to delete the list and all tasks in it? This can not be undone.');
 	
 	if(accept){
 		// Mutate lists array
 		store.update(e, 'deleteList');
 		
 		// Visualize
-		const list = e.target.parentNode;
+		const list = e.target.closest('.list');
 		list.remove();
 	}
 });
@@ -107,6 +107,27 @@ $('#lists-container').on('click', 'button.add-task-btn', e => {
 	);
 
 	$(e.target).parents('.list').children('ul').append(renderTask(task));
+});
+
+// Delete task
+$('#lists-container').on('click', 'button.delete-task-btn', e => {
+	const accept = confirm('Are yuou sure you want to delete the task? This can not be undone.');
+	
+	if(accept){
+		const task = e.target.closest('.task');
+		
+		// Mutate lists array
+		store.update(
+			{
+				e: e,
+				task: task
+			},
+			'deleteTask'
+		);
+
+		// Visualize
+		task.remove();
+	}
 });
 
 // Change task color
