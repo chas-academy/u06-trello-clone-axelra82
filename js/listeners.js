@@ -82,8 +82,12 @@ $('#lists-container').on('click', 'button.delete-list-btn', (e) => {
 	
 	if(accept){
 		const list = e.target.parentNode;
-		const listId = list.dataset.id - 1;
-		store.update(listId, 'deleteList');
+		const listId = getSourceListId(e);
+		const lists = store.lists();
+		
+		lists.splice(listId, 1);
+		store.set(lists);
+
 		list.remove();
 	}
 });

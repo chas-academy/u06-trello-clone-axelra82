@@ -17,12 +17,7 @@ const store = {
 				const currentList = lists.find(list => list.id == id);
 				currentList.tasks.push(task);
 				break;
-			
-			case 'deleteList':
-				lists.find(list => list.id == data)
-				lists.splice(data, 1);
-				break;
-		
+				
 			default:
 				break;
 		}
