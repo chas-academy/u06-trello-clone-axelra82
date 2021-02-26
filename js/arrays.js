@@ -29,6 +29,7 @@ const defaultLists = [
 		tasks: [
 			{
 				title: 'Something that needs doing',
+				description: 'Moo moo',
 				color: taskColors[2],
 			},
 		]
@@ -39,6 +40,7 @@ const defaultLists = [
 		tasks: [
 			{
 				title: 'Something that is currently being worked on',
+				description: 'Momo does moo moo',
 				color: taskColors[5],
 			},
 		]
@@ -49,6 +51,7 @@ const defaultLists = [
 		tasks: [
 			{
 				title: 'Something that is done',
+				description: 'Momo is done',
 				color: taskColors[7],
 			},
 		]
