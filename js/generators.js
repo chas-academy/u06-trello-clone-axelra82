@@ -30,10 +30,14 @@ const renderTask = (task) => {
 	.addClass('due-date')
 	.val(task.date)
 	.datepicker({
-		// Use UNIX timestamp date
-		dateFormat: "@",
-		onSelect: (date) => {
-			console.log(date);
+		onSelect: (date, e) => {
+			store.update(
+				{
+					e: e.input[0],
+					date: date,
+				},
+				'updateTaskDate'
+			)
 		}
 	});
 	const taskArchive = $('<button>').addClass('archive-task-btn').text('Archive');

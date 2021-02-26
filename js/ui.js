@@ -41,7 +41,7 @@ const makeSortable = () => {
 		},
 		stop: (e, ui) => {
 			// Sources
-			const sourceListId = getSourceListId(e);
+			const sourceListId = getSourceListId(e.target);
 			const sourceTaskIndex = ui.item.data('taskIndex');
 
 			// Targets
@@ -71,7 +71,7 @@ const makeSortable = () => {
 }
 
 const getSourceListId = e => {
-	const sourceList = e.target.closest('.list');
+	const sourceList = e.closest('.list');
 	return Array.from(sourceList.closest('ul').children).indexOf(sourceList);
 }
 

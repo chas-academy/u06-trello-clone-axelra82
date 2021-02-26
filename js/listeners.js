@@ -103,7 +103,7 @@ $('#lists-container').on('click', 'button.add-task-btn', e => {
 
 	store.update(
 		{
-			id: getSourceListId(e),
+			id: getSourceListId(e.target),
 			task: task
 		},
 		'addTask'

@@ -23,7 +23,7 @@ const store = {
 				break;
 
 			case 'deleteList':
-				listId = getSourceListId(data);
+				listId = getSourceListId(data.target);
 				lists.splice(listId, 1);
 
 				// Visualize
@@ -39,10 +39,24 @@ const store = {
 				currentList.tasks.push(task);
 				break;
 			
+			case 'updateTaskDate':
+				taskEl = data.e.closest('.task');
+				taskId = Array.from(taskEl.closest('ul').children).indexOf(taskEl);
+				sourceListId = getSourceListId(data.e);
+
+				taskObject = lists[sourceListId].tasks[taskId];
+
+				taskObject.date = data.date;
+
+				// Mutate lists
+				lists[sourceListId].tasks.splice(taskId, 1);
+				lists[sourceListId].tasks.push(taskObject);
+				break;
+			
 			case 'archiveTask':
 				taskEl = data.target.closest('.task');
 				taskId = Array.from(taskEl.closest('ul').children).indexOf(taskEl);
-				sourceListId = getSourceListId(data);
+				sourceListId = getSourceListId(data.target);
 
 				taskObject = lists[sourceListId].tasks[taskId];
 
@@ -51,14 +65,14 @@ const store = {
 				lists[0].tasks.push(taskObject);
 
 				// Visualize
-				$('#lists-container').find('.archive ul').append(taskEl);
+				$('#lists-container').find('.archive ul.sort-task').append(taskEl);
 				break;
 			
 			case 'deleteTask':
 				e = data.e;
 				task = data.task;
 				taskId = Array.from(task.closest('ul').children).indexOf(task);
-				lists[getSourceListId(e)].tasks.splice(taskId, 1);
+				lists[getSourceListId(e.target)].tasks.splice(taskId, 1);
 				break;
 			
 			default:
