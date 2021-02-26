@@ -21,7 +21,7 @@ User should be able to:
 - [x] ~~drag task between three lists (todo, doing, done), minimum~~
 - [ ] click task to see task content (dialog)
 - [ ] see multiple tabs in task for more info
-- [ ] set task deadline (datepicker)
+- [x] ~~set task deadline (datepicker)~~
 
 ## Requirements
 
@@ -41,6 +41,6 @@ To demonstrate deeper understanding of jQuery, jQuery UI and CSS-frameworks you 
 
 - [x] ~~create new tasks~~
 - [x] ~~create new list that can house tasks~~
-- [ ] change color of tasks
+- [x] ~~change color of tasks~~
 - [x] ~~archive tasks (i.e. task gets saved in a seperate archive)~~
 - [x] ~~save board. **Suggestion!** Use localStorage and/or as JSON-file for later upload.~~
