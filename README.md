@@ -27,7 +27,7 @@ User should be able to:
 
 Final product must use:
 
-- [ ] jQuery UI [datepicker](https://jqueryui.com/datepicker/)
+- [x] ~~jQuery UI [datepicker](https://jqueryui.com/datepicker/)~~
 - [x] ~~jQuery UI [draggable](https://jqueryui.com/draggable/), [droppable](https://jqueryui.com/droppable/) or [sortable](https://jqueryui.com/sortable/)~~
 - [ ] jQuery UI [dialog](https://jqueryui.com/dialog/)
 - [ ] jQuery UI [tabs](https://jqueryui.com/tabs/)
