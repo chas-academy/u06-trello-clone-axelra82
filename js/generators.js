@@ -22,22 +22,22 @@ const colorPaletts = (current) => {
 const renderTask = (task) => {
 	const taskItem = $('<li>').addClass(`task ${task.color}`).attr('data-id', task.id);
 	const taskTitle = $('<h3>').addClass('task-title').text(task.title);
-	// const taskBody = $('<div>').addClass('task-body').text(task.body);
-	// const taskDate = $('<input>')
-	// .attr('type', 'text')
-	// .attr('placeholder', 'Due date')
-	// .addClass('due-date')
-	// .val(task.date)
-	// .datepicker();
-	// const taskColor = $('<button>').addClass('btn').text('Colorpicker');
+	const taskDialog = $('<div>').addClass('task-dialog');
+	const taskDescription = $('<p>').text(task.description);
+	const taskDate = $('<input>')
+	.attr('type', 'text')
+	.attr('placeholder', 'Due date')
+	.addClass('due-date')
+	.val(task.date)
+	.datepicker();
 	const taskArchive = $('<button>').addClass('archive-task-btn').text('Archive');
 	const deleteTaskBtn = $('<button>').addClass('delete-task-btn').text('Delete task');
 
 	taskItem.append(taskTitle);
-	// taskItem.append(taskBody);
-	// taskItem.append(taskDate);
-	// // taskItem.append(taskColor);
-	// taskItem.append(colorPaletts(task.color));
+	taskItem.append(taskDialog);
+	taskDialog.append(taskDescription);
+	taskDialog.append(taskDate);
+	taskDialog.append(colorPaletts(task.color));
 	taskItem.append(taskArchive);
 	taskItem.append(deleteTaskBtn);
 	
@@ -62,8 +62,8 @@ const renderList = (list) => {
 	}
 	
 	listItem.append(taskList);
-	listItem.append(newTaskBtn);
-	listItem.append(deleteListBtn);
+	!isArchive && listItem.append(newTaskBtn);
+	!isArchive && listItem.append(deleteListBtn);
 
 	makeSortable();
 

@@ -79,3 +79,7 @@ const getTargetListId = e => {
 	const targetList = e.toElement.closest('.list');
 	return Array.from(targetList.closest('ul').children).indexOf(targetList);
 }
+
+$(".task-dialog").dialog({
+	  modal: true
+});
