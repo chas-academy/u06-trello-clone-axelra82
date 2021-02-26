@@ -26,7 +26,7 @@ const renderTask = (task) => {
 	const taskDescription = $('<p>').text(task.description);
 	const taskDate = $('<input>')
 	.attr('type', 'text')
-	.attr('placeholder', 'Due date')
+	.attr('placeholder', !task.date && 'Set due date')
 	.addClass('due-date')
 	.val(task.date)
 	.datepicker();

@@ -30,12 +30,12 @@ body {
   display: none;
 }
 
-.ui-state-highlight {
-  background: $winter-sky;
-  height: 3rem;
-}
-
 ul#lists-container {
+  .ui-state-highlight {
+    background: $winter-sky;
+    height: 3rem;
+  }
+
   list-style: none;
   padding: 0;
   display: grid;
