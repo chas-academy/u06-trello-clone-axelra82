@@ -140,17 +140,22 @@ $('#lists-container').on('click', 'button.delete-task-btn', e => {
 
 // Change task color
 $('#lists-container').on('click', '.color-palette div', e => {
-	const color = e.target.classList.value;
-	const currentColor = e.target.closest('.task').classList[1];
-	
+	const newColor = e.target.classList.value;
+	const currentColor = $(e.target).closest('.task')[0].classList[1];
+	const currentDiv = $(e.target).closest('.color-palettes').find('li .current')[0];
+
+	console.log(currentDiv);
+
 	store.update(
 		{
 			e: e.target,
-			color: color,
+			color: newColor,
 		},
 		'updateTaskColor'
 	);
 	
 	// Visualize
-	$(e.target).closest('.task').removeClass(currentColor).addClass(color);
+	$(e.target).closest('.task').removeClass(currentColor).addClass(newColor);
+	$(currentDiv).removeClass('current');
+	$(e.target).addClass('current');
 });

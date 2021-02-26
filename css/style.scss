@@ -79,8 +79,9 @@ ul#lists-container {
               border-radius: 50%;
 
               &.current {
-                border: 1px dashed $black;
+                // border: 1px dashed $black;
                 // box-shadow: 0 0 0.15rem 0.05rem rgba($black, 0.15);
+                display: none;
               }
             }
           }
