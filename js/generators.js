@@ -20,6 +20,7 @@ const colorPaletts = (current) => {
 }
 
 const renderTask = (task) => {
+	const isPassedDue = new Date(task.date).valueOf() < Date.now();
 	const taskItem = $('<li>').addClass(`task ${task.color}`).attr('data-id', task.id);
 	const taskTitle = $('<h3>').addClass('task-title').text(task.title);
 	const taskDialog = $('<div>').addClass('task-dialog');
@@ -27,7 +28,7 @@ const renderTask = (task) => {
 	const taskDate = $('<input>')
 	.attr('type', 'text')
 	.attr('placeholder', !task.date && 'Set due date')
-	.addClass('due-date')
+	.addClass(`due-date ${isPassedDue ? 'past' : ''}`)
 	.val(task.date)
 	.datepicker({
 		onSelect: (date, e) => {

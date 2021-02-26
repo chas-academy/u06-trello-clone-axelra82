@@ -63,6 +63,13 @@ ul#lists-container {
         padding: 1rem;
         border-radius: 0.25rem;
 
+        .due-date {
+          &.past {
+            color: red;
+            border-color: red;
+          }
+        }
+
         .color-palettes {
           display: flex;
           flex-flow: wrap;
