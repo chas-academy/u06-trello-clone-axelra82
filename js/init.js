@@ -53,6 +53,20 @@ const store = {
 				lists[sourceListId].tasks.push(taskObject);
 				break;
 			
+			case 'updateTaskColor':
+				taskEl = data.e.closest('.task');
+				taskId = Array.from(taskEl.closest('ul').children).indexOf(taskEl);
+				sourceListId = getSourceListId(data.e);
+
+				taskObject = lists[sourceListId].tasks[taskId];
+
+				taskObject.color = data.color;
+
+				// Mutate lists
+				lists[sourceListId].tasks.splice(taskId, 1);
+				lists[sourceListId].tasks.push(taskObject);
+				break;
+			
 			case 'archiveTask':
 				taskEl = data.target.closest('.task');
 				taskId = Array.from(taskEl.closest('ul').children).indexOf(taskEl);

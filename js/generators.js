@@ -37,7 +37,7 @@ const renderTask = (task) => {
 					date: date,
 				},
 				'updateTaskDate'
-			)
+			);
 		}
 	});
 	const taskArchive = $('<button>').addClass('archive-task-btn').text('Archive');
