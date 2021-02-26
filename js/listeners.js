@@ -86,21 +86,17 @@ $('#lists-container').on('click', 'button.delete-list-btn', e => {
 	if(accept){
 		// Mutate lists array
 		store.update(e, 'deleteList');
-		
-		// Visualize
-		const list = e.target.closest('.list');
-		list.remove();
 	}
 });
 
 // Create new task
 $('#lists-container').on('click', 'button.add-task-btn', e => {
 	const title = prompt('Task title', 'Do something');
-	const body = prompt('Task description', 'Describe it');
+	const description = prompt('Task description', 'Describe it');
 	
 	const task = {
 		title: title,
-		body: body,
+		description: description,
 		date: null,
 		color: taskColors[Math.floor(Math.random() * taskColors.length)]
 	};
@@ -118,21 +114,7 @@ $('#lists-container').on('click', 'button.add-task-btn', e => {
 
 // Archive task
 $('#lists-container').on('click', 'button.archive-task-btn', e => {
-	const taskEl = e.target.closest('.task');
-	const taskId = Array.from(taskEl.closest('ul').children).indexOf(taskEl);
-	const sourceListId = getSourceListId(e);
-
-	const lists = store.lists();
-	const taskObject = lists[sourceListId].tasks[taskId];
-
-	// Mutate lists
-	lists[sourceListId].tasks.splice(taskId, 1);
-	lists[0].tasks.push(taskObject);
-	store.set(lists);
-
-	// Visualize
-	$('#lists-container').find('.archive ul').append(taskEl);
-
+	store.update(e, 'archiveTask');
 });
 
 // Delete task
@@ -157,11 +139,11 @@ $('#lists-container').on('click', 'button.delete-task-btn', e => {
 });
 
 // Change task color
-$('#lists-container').on('click', '.color-palette div', (e) => {
-	e.preventDefault();
-	$this = $(e.target);
+$('#lists-container').on('click', '.color-palette div', e => {
+	// $this = $(e.target);
+	console.log(e.target.classList.value);
 	
-	color = $this.attr('class');
+	// color = $this.attr('class');
 	
-	$this.parents('.sort-task').children('ul').append($item);
+	// $this.parents('.sort-task').children('ul').append($item);
 });

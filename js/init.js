@@ -5,7 +5,17 @@ const store = {
 	default: defaultLists,
 	update(data = {}, action = null){
 		
-		let lists = this.lists();
+		let lists = this.lists(),
+		listId,
+		list,
+		taskId,
+		task,
+		taskEl,
+		taskObject,
+		id,
+		e,
+		currentList,
+		sourceListId;
 		
 		switch (action) {
 			case 'addList':
@@ -13,24 +23,41 @@ const store = {
 				break;
 
 			case 'deleteList':
-				const listId = getSourceListId(data);
+				listId = getSourceListId(data);
 				lists.splice(listId, 1);
+
+				// Visualize
+				list = data.target.closest('.list');
+				list.remove();
+
 				break;
 			
 			case 'addTask':
-				const {id, task: addTask} = data;
-				const currentList = lists[id];
-				currentList.tasks.push(addTask);
+				id = data.id;
+				task = data.task;
+				currentList = lists[id];
+				currentList.tasks.push(task);
 				break;
 			
 			case 'archiveTask':
-				
-				// lists[getSourceListId(e)].tasks.splice(taskId, 1);
+				taskEl = data.target.closest('.task');
+				taskId = Array.from(taskEl.closest('ul').children).indexOf(taskEl);
+				sourceListId = getSourceListId(data);
+
+				taskObject = lists[sourceListId].tasks[taskId];
+
+				// Mutate lists
+				lists[sourceListId].tasks.splice(taskId, 1);
+				lists[0].tasks.push(taskObject);
+
+				// Visualize
+				$('#lists-container').find('.archive ul').append(taskEl);
 				break;
 			
 			case 'deleteTask':
-				const {e, task: deleteTask} = data;
-				const taskId = Array.from(deleteTask.closest('ul').children).indexOf(deleteTask);
+				e = data.e;
+				task = data.task;
+				taskId = Array.from(task.closest('ul').children).indexOf(task);
 				lists[getSourceListId(e)].tasks.splice(taskId, 1);
 				break;
 			
