@@ -29,7 +29,13 @@ const renderTask = (task) => {
 	.attr('placeholder', !task.date && 'Set due date')
 	.addClass('due-date')
 	.val(task.date)
-	.datepicker();
+	.datepicker({
+		// Use UNIX timestamp date
+		dateFormat: "@",
+		onSelect: (date) => {
+			console.log(date);
+		}
+	});
 	const taskArchive = $('<button>').addClass('archive-task-btn').text('Archive');
 	const deleteTaskBtn = $('<button>').addClass('delete-task-btn').text('Delete task');
 

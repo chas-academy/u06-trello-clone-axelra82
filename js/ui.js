@@ -82,15 +82,3 @@ const getTargetListId = e => {
 
 // Something great happens here
 // $(".task-dialog").dialog({});
-
-// Set date
-$(".due-date").datepicker({
-	onClose: (date, inst) => {
-		console.log(date);
-		console.log(inst);
-	},
-	onSelect: function(date) {
-		alert(date);
-	},
-});
-
