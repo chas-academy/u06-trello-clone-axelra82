@@ -20,7 +20,7 @@ const colorPaletts = (current) => {
 }
 
 const renderTask = (task, id, listId) => {
-	const uid = `list-${listId}-task${id}`;
+	const uid = `list-${listId}-task-${id}`;
 	const isPassedDue = new Date(task.date).valueOf() < Date.now();
 	const taskItem = $('<li>').addClass(`task ${task.color}`).attr('data-id', `#${uid}`);
 	const taskCardTitle = $('<strong>').text(task.title);
@@ -37,7 +37,7 @@ const renderTask = (task, id, listId) => {
 		onSelect: (date, e) => {
 			store.update(
 				{
-					e: e.input[0],
+					e: uid, //e.input[0]
 					date: date,
 				},
 				'updateTaskDate'
@@ -76,7 +76,7 @@ const renderList = (list, listId) => {
 	// console.log(list.tasks);
 	
 	list.tasks.forEach((task, id) => {
-		const taskItem = renderTask(task, id+1, listId);
+		const taskItem = renderTask(task, id, listId);
 		taskList.append(taskItem);
 	});
 
