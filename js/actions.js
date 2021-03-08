@@ -2,8 +2,8 @@
 Actions
 *******************************/
 const populateLists = (lists) => {
-	lists.forEach((list, i) => {
-		const lists = renderList(list, i);
+	lists.forEach((list, id) => {
+		const lists = renderList(list, id+1);
 		$('#lists-container').append(lists);
 	});
 
