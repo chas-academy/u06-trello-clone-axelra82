@@ -112,6 +112,11 @@ $('#lists-container').on('click', 'button.add-task-btn', e => {
 	$(e.target).parents('.list').children('ul').append(renderTask(task));
 });
 
+// Open task detail on click
+$('#lists-container').on('click', '.task', e => {
+	$($(e.target.dataset.id)).dialog('open');
+});
+
 // Archive task
 $('#lists-container').on('click', 'button.archive-task-btn', e => {
 	store.update(e, 'archiveTask');
