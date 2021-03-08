@@ -153,24 +153,30 @@ $('#lists-container').on('click', 'button.delete-task-btn', e => {
 	}
 });
 
-// Change task color
-$('#lists-container').on('click', '.color-palette div', e => {
-	const newColor = e.target.classList.value;
-	const currentColor = $(e.target).closest('.task')[0].classList[1];
-	const currentDiv = $(e.target).closest('.color-palettes').find('li .current')[0];
-
-	console.log(currentDiv);
-
-	store.update(
-		{
-			e: e.target,
-			color: newColor,
-		},
-		'updateTaskColor'
-	);
+// Check if dialog is open
+$(document).on("dialogopen", ".ui-dialog", (dialogEl, ui) => {
 	
-	// Visualize
-	$(e.target).closest('.task').removeClass(currentColor).addClass(newColor);
-	$(currentDiv).removeClass('current');
-	$(e.target).addClass('current');
+	// Change task color
+	$('.task-content').on('click', e => {
+		const uid = $(e.currentTarget).attr('id');
+		const newColor = e.target.className;
+		const currentDiv = $(e.target).closest('.color-palettes').find('li .current')[0];
+		const currentColor = currentDiv.classList[0];
+
+		store.update(
+			{
+				e: uid,
+				color: newColor,
+			},
+			'updateTaskColor'
+		);
+		
+		// // Visualize
+		const currentTaskContainer = $('.list .sort-task').find(`[data-id='#${uid}']`);
+		currentTaskContainer.removeClass(currentColor).addClass(newColor);
+		
+		$(currentDiv).removeClass('current');
+		$(e.target).addClass('current');
+	});
 });
+
