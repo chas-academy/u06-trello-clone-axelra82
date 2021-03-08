@@ -19,13 +19,16 @@ const colorPaletts = (current) => {
 	return palettes;
 }
 
-const renderTask = (task) => {
+const renderTask = (task, id, listId) => {
+	const uid = `list-${listId}-task${id}`;
 	const isPassedDue = new Date(task.date).valueOf() < Date.now();
-	const taskItem = $('<li>').addClass(`task ${task.color}`).attr('data-id', task.id);
+	const taskItem = $('<li>').addClass(`task ${task.color}`).attr('data-id', `#${uid}`);
+	const taskCardTitle = $('<strong>').text(task.title);
+
+	const taskContent = $('<article>').addClass('task-content').attr('id', uid);
 	const taskTitle = $('<h3>').addClass('task-title').text(task.title);
-	const taskDialog = $('<div>').addClass('task-dialog');
 	const taskDescription = $('<p>').text(task.description);
-	const taskDate = $('<input>')
+	const taskDate = $('<input tabindex="-1">')
 	.attr('type', 'text')
 	.attr('placeholder', !task.date && 'Set due date')
 	.addClass(`due-date ${isPassedDue ? 'past' : ''}`)
@@ -44,20 +47,23 @@ const renderTask = (task) => {
 	const taskArchive = $('<button>').addClass('archive-task-btn').text('Archive');
 	const deleteTaskBtn = $('<button>').addClass('delete-task-btn').text('Delete task');
 
-	taskItem.append(taskTitle);
-	taskItem.append(taskDialog);
-	taskDialog.append(taskDescription);
-	taskDialog.append(taskDate);
-	taskDialog.append(colorPaletts(task.color));
-	taskItem.append(taskArchive);
-	taskItem.append(deleteTaskBtn);
+	taskItem.append(taskCardTitle);
+	taskItem.append(taskContent);
+	
+	taskContent.append(taskTitle);
+	taskContent.append(taskDescription);
+	taskContent.append(taskDate);
+	taskContent.append(colorPaletts(task.color));
+	
+	taskContent.append(taskArchive);
+	taskContent.append(deleteTaskBtn);
 	
 	makeSortable();
 	
 	return taskItem;
 }
 
-const renderList = (list) => {
+const renderList = (list, listId) => {
 	const isArchive = list.title.toLowerCase() === 'archive';
 	const listItem = $('<li>').addClass(`list ${isArchive ? 'archive hidden' : ''}`);
 	const listHeader = $('<h3>').addClass(`list-header ${list.color}`).text(list.title);
@@ -67,10 +73,17 @@ const renderList = (list) => {
 	
 	listItem.append(listHeader);
 	
-	for (const task of list.tasks) {
-		const taskItem = renderTask(task);
+	// console.log(list.tasks);
+	
+	list.tasks.forEach((task, id) => {
+		const taskItem = renderTask(task, id+1, listId);
 		taskList.append(taskItem);
-	}
+	});
+
+	// for (const task of list.tasks) {
+	// 	const taskItem = renderTask(task);
+	// 	taskList.append(taskItem);
+	// }
 	
 	listItem.append(taskList);
 	!isArchive && listItem.append(newTaskBtn);
