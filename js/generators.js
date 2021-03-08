@@ -44,8 +44,8 @@ const renderTask = (task, id, listId) => {
 			);
 		}
 	});
-	const taskArchive = $('<button>').addClass('archive-task-btn').text('Archive');
-	const deleteTaskBtn = $('<button>').addClass('delete-task-btn').text('Delete task');
+	const taskArchive = $('<button tabindex="-1">').addClass('archive-task-btn').text('Archive');
+	const deleteTaskBtn = $('<button tabindex="-1">').addClass('delete-task-btn').text('Delete task');
 
 	taskItem.append(taskCardTitle);
 	taskItem.append(taskContent);

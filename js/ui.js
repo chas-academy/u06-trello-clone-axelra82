@@ -82,7 +82,10 @@ const dialogBox = () => {
 				$(this).dialog("close");
 			}
 		},
-		hide: { effect: "clip", duration: 350 }
+		hide: {
+			effect: "clip",
+			duration: 350
+		}
 	});
 }
 
