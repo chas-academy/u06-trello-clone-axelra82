@@ -1,0 +1,83 @@
+html {
+    font: 300 1rem/1.2rem "Nunito", sans-serif;
+  }
+  
+  body {
+    margin: 2rem;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  ul#lists-container {
+    .ui-state-highlight {
+      background: $winter-sky;
+      height: 3rem;
+    }
+  
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-auto-columns: minmax(250px, 350px);
+    grid-auto-flow: column;
+    column-gap: 2rem;
+  
+    li.list {
+      background: $smoke;
+  
+      .list-header {
+        text-align: center;
+        margin: 0;
+        padding: 1rem 0.75rem;
+        color: $white;
+      }
+  
+      ul {
+        list-style: none;
+        padding: 1rem;
+        margin: 1rem;
+  
+        .task {
+          margin: 1rem 0;
+          padding: 1rem;
+          border-radius: 0.25rem;
+        }
+      }
+    }
+  }
+  
+  .task-content{
+    .due-date {
+      &.past {
+        color: red;
+        border-color: red;
+      }
+    }
+  
+    .color-palettes {
+      display: flex;
+      flex-flow: wrap;
+      list-style: none;
+      padding: 0;
+      margin: 1rem 0;
+  
+      li {
+        margin: 0 0.5rem 0.5rem 0;
+  
+        div {
+          width: 1.5rem;
+          height: 1.5rem;
+          border-radius: 50%;
+  
+          &.current {
+            // border: 1px dashed $black;
+            // box-shadow: 0 0 0.15rem 0.05rem rgba($black, 0.15);
+            display: none;
+          }
+        }
+      }
+    }
+  }
+  
+  
