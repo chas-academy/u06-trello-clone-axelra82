@@ -114,7 +114,17 @@ $('#lists-container').on('click', 'button.add-task-btn', e => {
 
 // Open task detail on click
 $('#lists-container').on('click', '.task', e => {
-	$($(e.target.dataset.id)).dialog('open');
+	const $this = $(e.target);
+	$($this.data('id')).dialog('open');
+	$($this.data('id')).dialog(
+		{
+			position: {
+				my: "center",
+				at: "center",
+				of: $this
+			}
+		}
+	)
 });
 
 // Archive task
