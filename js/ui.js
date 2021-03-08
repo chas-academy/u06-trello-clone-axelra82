@@ -67,7 +67,23 @@ const makeSortable = () => {
 			}
 		},
 	}).disableSelection();
+
+	dialogBox();
 	return;
+}
+
+const dialogBox = () => {
+	$(".task-content").dialog({
+		autoOpen: false,
+		draggable: false,
+		modal: true,
+		buttons: {
+			Ok: function() {
+				$(this).dialog("close");
+			}
+		},
+		hide: { effect: "clip", duration: 350 }
+	});
 }
 
 const getSourceListId = e => {
