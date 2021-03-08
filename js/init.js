@@ -40,9 +40,8 @@ const store = {
 				break;
 			
 			case 'updateTaskDate':
-				taskEl = data.e.closest('.task');
-				taskId = Array.from(taskEl.closest('ul').children).indexOf(taskEl);
-				sourceListId = getSourceListId(data.e);
+				taskId = getTaskId(data.e);
+				sourceListId = getListId(data.e);
 
 				taskObject = lists[sourceListId].tasks[taskId];
 
@@ -54,9 +53,8 @@ const store = {
 				break;
 			
 			case 'updateTaskColor':
-				taskEl = data.e.closest('.task');
-				taskId = Array.from(taskEl.closest('ul').children).indexOf(taskEl);
-				sourceListId = getSourceListId(data.e);
+				taskId = getTaskId(data.e);
+				sourceListId = getListId(data.e);
 
 				taskObject = lists[sourceListId].tasks[taskId];
 
@@ -108,6 +106,14 @@ const store = {
 		}
 		return JSON.parse(this.get());
 	},
+}
+
+const getListId = (str) => {
+	return str.split('-')[1];
+}
+
+const getTaskId = (str) => {
+	return str.split('-')[3];
 }
 
 populateLists(store.lists());
