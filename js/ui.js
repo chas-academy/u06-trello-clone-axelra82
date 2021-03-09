@@ -68,18 +68,26 @@ const makeSortable = () => {
 		},
 	}).disableSelection();
 
-	dialogBox();
+	taskDialog();
 	return;
 }
 
-const dialogBox = () => {
+const taskDialog = () => {
 	$(".task-content").dialog({
 		autoOpen: false,
 		draggable: false,
 		modal: true,
 		buttons: {
-			Ok: function() {
+			close: function() {
 				$(this).dialog("close");
+			},
+			archive: function() {
+				//$(this).dialog("close");
+				alert('archive');
+			},
+			delete: function() {
+				//$(this).dialog("close");
+				alert('delete');
 			}
 		},
 		hide: {
