@@ -82,12 +82,10 @@ const taskDialog = () => {
 				$(this).dialog("close");
 			},
 			archive: function() {
-				//$(this).dialog("close");
-				alert('archive');
+				archiveTask(this);
 			},
 			delete: function() {
-				//$(this).dialog("close");
-				alert('delete');
+				deleteTask(this);
 			}
 		},
 		hide: {
@@ -106,6 +104,3 @@ const getTargetListId = e => {
 	const targetList = e.toElement.closest('.list');
 	return Array.from(targetList.closest('ul').children).indexOf(targetList);
 }
-
-// Something great happens here
-// $(".task-dialog").dialog({});

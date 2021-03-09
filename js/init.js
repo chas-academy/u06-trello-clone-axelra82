@@ -6,14 +6,13 @@ const store = {
 	update(data = {}, action = null){
 		
 		let lists = this.lists(),
+		callback = null,
 		listId,
 		list,
 		taskId,
 		task,
-		taskEl,
 		taskObject,
 		id,
-		e,
 		currentList,
 		sourceListId;
 		
@@ -37,11 +36,14 @@ const store = {
 				task = data.task;
 				currentList = lists[id];
 				currentList.tasks.push(task);
+				callback = currentList.tasks.length-1;
 				break;
 			
 			case 'updateTaskDate':
-				taskId = getTaskId(data.e);
-				sourceListId = getListId(data.e);
+				// taskId = getTaskId(data.e);
+				// sourceListId = getListId(data.e);
+				sourceListId = ids(data.uid).list;
+				taskId = ids(data.uid).task;
 
 				taskObject = lists[sourceListId].tasks[taskId];
 
@@ -53,8 +55,8 @@ const store = {
 				break;
 			
 			case 'updateTaskColor':
-				taskId = getTaskId(data.e);
-				sourceListId = getListId(data.e);
+				sourceListId = ids(data.uid).list;
+				taskId = ids(data.uid).task;
 
 				taskObject = lists[sourceListId].tasks[taskId];
 
@@ -66,25 +68,15 @@ const store = {
 				break;
 			
 			case 'archiveTask':
-				taskEl = data.target.closest('.task');
-				taskId = Array.from(taskEl.closest('ul').children).indexOf(taskEl);
-				sourceListId = getSourceListId(data.target);
-
-				taskObject = lists[sourceListId].tasks[taskId];
+				taskObject = lists[ids(data).list].tasks[ids(data).task];
 
 				// Mutate lists
-				lists[sourceListId].tasks.splice(taskId, 1);
+				lists[ids(data).list].tasks.splice(ids(data).task, 1);
 				lists[0].tasks.push(taskObject);
-
-				// Visualize
-				$('#lists-container').find('.archive ul.sort-task').append(taskEl);
 				break;
 			
 			case 'deleteTask':
-				e = data.e;
-				task = data.task;
-				taskId = Array.from(task.closest('ul').children).indexOf(task);
-				lists[getSourceListId(e.target)].tasks.splice(taskId, 1);
+				lists[ids(data).list].tasks.splice(ids(data).task, 1);
 				break;
 			
 			default:
@@ -92,6 +84,10 @@ const store = {
 		}
 		
 		this.set(lists);
+		if(callback){
+			return(callback);
+		}
+		return;
 	},
 	get(){
 		return localStorage.getItem(this.name);
@@ -108,12 +104,14 @@ const store = {
 	},
 }
 
-const getListId = (str) => {
-	return str.split('-')[1];
-}
+const ids = (data) => {
+	const list = data.split('-')[1];
+	const task = data.split('-')[3];
 
-const getTaskId = (str) => {
-	return str.split('-')[3];
+	return {
+		list,
+		task
+	}
 }
 
 populateLists(store.lists());

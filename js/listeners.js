@@ -94,6 +94,8 @@ $('#lists-container').on('click', 'button.add-task-btn', e => {
 	const title = prompt('Task title', 'Do something');
 	const description = prompt('Task description', 'Describe it');
 	
+	const listId = e.target.closest('.list').id.match(/\d+/)[0];
+
 	const task = {
 		title: title,
 		description: description,
@@ -101,15 +103,16 @@ $('#lists-container').on('click', 'button.add-task-btn', e => {
 		color: taskColors[Math.floor(Math.random() * taskColors.length)]
 	};
 
-	store.update(
+	const taskId = store.update(
 		{
-			id: getSourceListId(e.target),
+			id: listId,
 			task: task
 		},
 		'addTask'
 	);
 
-	$(e.target).parents('.list').children('ul').append(renderTask(task));
+	$(e.target).parents('.list').children('ul').append(renderTask(task, taskId, listId));
+	makeSortable();
 });
 
 // Open task detail on click
@@ -128,51 +131,62 @@ $('#lists-container').on('click', '.task', e => {
 });
 
 // Archive task
-$('#lists-container').on('click', 'button.archive-task-btn', e => {
-	store.update(e, 'archiveTask');
-});
+// $('#lists-container').on('click', 'button.archive-task-btn', e => {
+const archiveTask = (e) => {
+	const uid = $(e).attr('id');
+	
+	// Mutate lists array
+	store.update(
+		uid,
+		'archiveTask'
+	);
+	
+	// Visualize
+	$(e).dialog("close");
+	const taskLi = $(document).find(`[data-id='#${uid}']`);
+	$('#lists-container').find('.archive ul.sort-task').append(taskLi);
+};
 
 // Delete task
-$('#lists-container').on('click', 'button.delete-task-btn', e => {
-	const accept = confirm('Are yuou sure you want to delete the task? This can not be undone.');
+const deleteTask = (e) => {
+	const accept = confirm('Are you sure you want to delete the task? This can not be undone.');
 	
 	if(accept){
-		const task = e.target.closest('.task');
+		const uid = $(e).attr('id');
 		
 		// Mutate lists array
 		store.update(
-			{
-				e: e,
-				task: task
-			},
+			uid,
 			'deleteTask'
 		);
-
+		
 		// Visualize
-		task.remove();
+		$(e).dialog("close");
+		$(document).find(`[data-id='#${uid}']`).remove();
 	}
-});
+};
 
 // Check if dialog is open
-$(document).on("dialogopen", ".ui-dialog", (dialogEl, ui) => {
+$(document).on("dialogopen", ".ui-dialog", (e, ui) => {
 	
 	// Change task color
-	$('.task-content').on('click', e => {
-		const uid = $(e.currentTarget).attr('id');
+	// This could use some more attention. Buggy
+	$('.task-content .color-palettes').on('click', '.color-palette', e => {
+		const uid = e.target.closest('.task-content').id;
 		const newColor = e.target.className;
 		const currentDiv = $(e.target).closest('.color-palettes').find('li .current')[0];
 		const currentColor = currentDiv.classList[0];
 
 		store.update(
 			{
-				e: uid,
-				color: newColor,
+				uid,
+				color: newColor.replace(/\scurrent\s/g,''),
 			},
 			'updateTaskColor'
 		);
 		
-		// // Visualize
-		const currentTaskContainer = $('.list .sort-task').find(`[data-id='#${uid}']`);
+		// Visualize
+		const currentTaskContainer = $(document).find(`[data-id='#${uid}']`);
 		currentTaskContainer.removeClass(currentColor).addClass(newColor);
 		
 		$(currentDiv).removeClass('current');
