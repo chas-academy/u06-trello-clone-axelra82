@@ -19,8 +19,8 @@ This assignment does not take aesthetics or design in to account. You will only 
 User should be able to:
 
 - [x] ~~drag task between three lists (todo, doing, done), minimum~~
-- [ ] click task to see task content (dialog)
-- [ ] see multiple tabs in task for more info
+- [x] ~~click task to see task content (dialog)~~
+- [x] ~~see multiple tabs in task for more info~~
 - [x] ~~set task deadline (datepicker)~~
 
 ## Requirements
@@ -29,9 +29,9 @@ Final product must use:
 
 - [x] ~~jQuery UI [datepicker](https://jqueryui.com/datepicker/)~~
 - [x] ~~jQuery UI [draggable](https://jqueryui.com/draggable/), [droppable](https://jqueryui.com/droppable/) or [sortable](https://jqueryui.com/sortable/)~~
-- [ ] jQuery UI [dialog](https://jqueryui.com/dialog/)
-- [ ] jQuery UI [tabs](https://jqueryui.com/tabs/)
-- [ ] minimum two optional effect from [JQuery UI](https://jqueryui.com)
+- [x] ~~jQuery UI [dialog](https://jqueryui.com/dialog/)~~
+- [x] ~~jQuery UI [tabs](https://jqueryui.com/tabs/)~~
+- [x] ~~minimum two optional effect from [JQuery UI](https://jqueryui.com)~~
 - [ ] at least one feature with a simple JQuery UI Widget
 - [x] ~~layout/disposition from optional CSS-framework~~
 
