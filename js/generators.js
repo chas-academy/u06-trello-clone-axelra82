@@ -43,17 +43,8 @@ const renderTask = (task, id, listId) => {
 	.attr('placeholder', !task.date && 'Set due date')
 	.addClass(`due-date ${isPassedDue ? 'past' : ''}`)
 	.val(task.date)
-	.datepicker({
-		onSelect: (date, e) => {
-			store.update(
-				{
-					uid,
-					date,
-				},
-				'updateTaskDate'
-			);
-		}
-	});
+	.datepicker()
+	.isFuture();
 
 	// Content
 	tabsList.append(tabContent);
