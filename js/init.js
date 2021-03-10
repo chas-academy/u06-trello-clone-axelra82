@@ -7,14 +7,7 @@ const store = {
 		
 		let lists = this.lists(),
 		callback = null,
-		listId,
-		list,
-		taskId,
-		task,
-		taskObject,
-		id,
-		currentList,
-		sourceListId;
+		taskObject;
 		
 		switch (action) {
 			case 'addList':
@@ -23,48 +16,36 @@ const store = {
 				break;
 
 			case 'deleteList':
-				list = data.target.closest('.list');
-				listId = list.id.split('-')[2];
-
-				lists.splice(listId, 1);
+				lists.splice(data.listId, 1);
 
 				// Visualize
-				list.remove();
+				data.element.remove();
 
 				break;
 			
 			case 'addTask':
-				id = data.id;
-				task = data.task;
-				currentList = lists[id];
-				currentList.tasks.push(task);
-				callback = currentList.tasks.length-1;
+				taskObject = data.task;
+				const currentList = lists[data.id];
+				currentList.tasks.push(taskObject);
+				callback = currentList.tasks.length > 1 ? currentList.tasks.length-1 : '0';
 				break;
 			
 			case 'updateTaskDate':
-				sourceListId = ids(data.uid).list;
-				taskId = ids(data.uid).task;
-
-				taskObject = lists[sourceListId].tasks[taskId];
-
+				taskObject = lists[data.listId].tasks[data.taskId];
 				taskObject.date = data.date;
 
 				// Mutate lists
-				lists[sourceListId].tasks.splice(taskId, 1);
-				lists[sourceListId].tasks.push(taskObject);
+				lists[data.listId].tasks.splice(data.taskId, 1);
+				lists[data.listId].tasks.push(taskObject);
 				break;
 			
 			case 'updateTaskColor':
-				sourceListId = ids(data.uid).list;
-				taskId = ids(data.uid).task;
-
-				taskObject = lists[sourceListId].tasks[taskId];
-
+				taskObject = lists[data.listId].tasks[data.taskId];
 				taskObject.color = data.color;
 
 				// Mutate lists
-				lists[sourceListId].tasks.splice(taskId, 1);
-				lists[sourceListId].tasks.push(taskObject);
+				lists[data.listId].tasks.splice(data.taskId, 1);
+				lists[data.listId].tasks.push(taskObject);
 				break;
 			
 			case 'archiveTask':
@@ -75,8 +56,8 @@ const store = {
 				lists[0].tasks.push(taskObject);
 				break;
 			
-			case 'deleteTask':
-				lists[ids(data).list].tasks.splice(ids(data).task, 1);
+			case 'deleteTask':				
+				lists[data.listId].tasks.splice(data.taskId, 1);
 				break;
 			
 			default:

@@ -86,10 +86,17 @@ $('#add-list-btn').on('click', e => {
 $('#lists-container').on('click', 'button.delete-list-btn', e => {
 	const accept = confirm('Are you sure you want to delete the list and all tasks in it? This can not be undone.');
 	
+	
 	if(accept){
+		const element = e.target.closest('.list');
+		const listId = element.id.split('-')[2];
+
 		// Mutate lists array
 		store.update(
-			e,
+			{
+				listId,
+				element
+			},
 			'deleteList'
 		);
 	}
@@ -99,11 +106,8 @@ $('#lists-container').on('click', 'button.delete-list-btn', e => {
 $('#lists-container').on('click', 'button.add-task-btn', e => {
 	const title = prompt('Task title', 'Do something');
 	const description = prompt('Task description', 'Describe it');
-	
 	const listId = e.target.closest('.list').id.split('-')[2];
-
-	console.log(e.target.closest('.list').id.split('-')[2]);
-
+	
 	const task = {
 		title: title,
 		description: description,
@@ -161,10 +165,15 @@ const deleteTask = (e) => {
 	
 	if(accept){
 		const uid = $(e).attr('id');
-		
+		const listId = ids(uid).list;
+		const taskId = ids(uid).task;
+
 		// Mutate lists array
 		store.update(
-			uid,
+			{
+				listId,
+				taskId
+			},
 			'deleteTask'
 		);
 		
@@ -181,13 +190,17 @@ $(document).on("dialogopen", ".ui-dialog", (e, ui) => {
 	// This could use some more attention. Buggy
 	$('.task-content .color-palettes').on('click', '.color-palette', e => {
 		const uid = e.target.closest('.task-content').id;
+		const taskId = ids(uid).task;
+		const listId = ids(uid).list;
+		
 		const newColor = e.target.className;
 		const currentDiv = $(e.target).closest('.color-palettes').find('li .current')[0];
 		const currentColor = currentDiv.classList[0];
 
 		store.update(
 			{
-				uid,
+				taskId,
+				listId,
 				color: newColor.replace(/\scurrent\s/g,''),
 			},
 			'updateTaskColor'
