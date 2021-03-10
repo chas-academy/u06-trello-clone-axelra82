@@ -20,17 +20,49 @@
  		integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous">
  	</script>
 
-
-
 	<!-- Style and JS -->
-	<link rel="stylesheet" href="css/style.min.css">
-	<script defer src="/js/ui.js"></script>
-	<script defer src="/js/date-check-widget.js"></script>
-	<script defer src="/js/arrays.js"></script>
-	<script defer src="/js/generators.js"></script>
-	<script defer src="/js/listeners.js"></script>
-	<script defer src="/js/actions.js"></script>
-	<script defer src="/js/init.js"></script>
+	<script>
+		// This script helps with github pages reference problem
+		// Set up variables for location test
+		const chasGitHub = 'chas-academy.github.io';
+		const gitHubRepoName = 'u06-trello-clone-axelra82';
+
+		// Find out if location is GitHub pages or not
+		const isGitHub = window.location.host === chasGitHub ? true : false;
+
+		// Define the relative root path
+		const cssFile = '/css/style.min.css?v=1.0';
+
+		// Create the elements we'll need in head
+		const styleEl = document.createElement('link');
+
+		// Set attributes for elements
+		styleEl.rel = 'stylesheet';
+		styleEl.href = !isGitHub ? cssFile : `/${gitHubRepoName}${cssFile}`;
+		
+		// Add style element to head 
+		document.head.appendChild(styleEl);
+
+		// List script file names
+		const fileNames = [
+			'ui',
+			'date-check-widget',
+			'arrays',
+			'generators',
+			'listeners',
+			'actions',
+			'init'
+		];
+
+		// Loop script filenames array and append to head with defer
+		for(const fileName of fileNames){
+			const scriptEl = document.createElement('script');
+			scriptEl.setAttribute("defer", "");
+			const jsFile = `/js/${fileName}.js`;
+			scriptEl.src = !isGitHub ? jsFile : `/${gitHubRepoName}${jsFile}`;
+			document.head.appendChild(scriptEl);
+		}
+	</script>
 </head>
 
 <body>
