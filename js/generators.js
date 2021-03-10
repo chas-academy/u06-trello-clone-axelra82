@@ -85,17 +85,10 @@ const renderList = (list, listId) => {
 	
 	listItem.append(listHeader);
 	
-	// console.log(list.tasks);
-	
 	list.tasks.forEach((task, id) => {
 		const taskItem = renderTask(task, id, listId);
 		taskList.append(taskItem);
 	});
-
-	// for (const task of list.tasks) {
-	// 	const taskItem = renderTask(task);
-	// 	taskList.append(taskItem);
-	// }
 	
 	listItem.append(taskList);
 	!isArchive && listItem.append(newTaskBtn);
