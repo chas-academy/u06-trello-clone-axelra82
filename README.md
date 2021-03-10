@@ -32,7 +32,7 @@ Final product must use:
 - [x] ~~jQuery UI [dialog](https://jqueryui.com/dialog/)~~
 - [x] ~~jQuery UI [tabs](https://jqueryui.com/tabs/)~~
 - [x] ~~minimum two optional effect from [JQuery UI](https://jqueryui.com)~~
-- [ ] at least one feature with a simple JQuery UI Widget
+- [x] ~~at least one feature with a simple JQuery UI Widget~~
 - [x] ~~layout/disposition from optional CSS-framework~~
 
 ## Challenge goals
