@@ -106,6 +106,6 @@ const ids = (data) => {
 }
 
 const getTargetListId = e => {
-
-	return e.toElement.closest('.list').id.split('-')[2];
+	const targetList = e.toElement.closest('.list');
+	return Array.from(targetList.closest('ul').children).indexOf(targetList);
 }
