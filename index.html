@@ -22,7 +22,12 @@
 
 	<!-- Style and JS -->
 	<script>
-		// This script helps with github pages reference problem
+		// This script helps us with github pages reference problem
+
+		// Test for location
+		// local is default in file references
+		// if we are on github, changes file references
+
 		// Set up variables for location test
 		const chasGitHub = 'chas-academy.github.io';
 		const gitHubRepoName = 'u06-trello-clone-axelra82';
@@ -40,29 +45,33 @@
 		styleEl.rel = 'stylesheet';
 		styleEl.href = !isGitHub ? cssFile : `/${gitHubRepoName}${cssFile}`;
 		
+
 		// Add style element to head 
 		document.head.appendChild(styleEl);
 
-		// List script file names
-		const fileNames = [
-			'ui',
-			'date-check-widget',
-			'arrays',
-			'generators',
-			'listeners',
-			'actions',
-			'init'
-		];
+		document.addEventListener('DOMContentLoaded', () => {
+			// List script file names
+			const fileNames = [
+				'ui',
+				'date-check-widget',
+				'arrays',
+				'generators',
+				'listeners',
+				'actions',
+				'init'
+			];
 
-		// Loop script filenames array and append to head with defer
-		for(const fileName of fileNames){
-			const scriptEl = document.createElement('script');
-			scriptEl.setAttribute("defer", "");
-			const jsFile = `/js/${fileName}.js`;
-			scriptEl.src = !isGitHub ? jsFile : `/${gitHubRepoName}${jsFile}`;
-			document.head.appendChild(scriptEl);
-		}
+			// Loop script filenames array and append to head with defer
+			for(const fileName of fileNames){
+				const scriptEl = document.createElement('script');
+				scriptEl.setAttribute("defer", "");
+				const jsFile = `/js/${fileName}.js`;
+				scriptEl.src = !isGitHub ? jsFile : `/${gitHubRepoName}${jsFile}`;
+				document.head.appendChild(scriptEl);
+			}			
+		});
 	</script>
+
 </head>
 
 <body>
