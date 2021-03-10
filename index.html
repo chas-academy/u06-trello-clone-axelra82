@@ -21,56 +21,14 @@
  	</script>
 
 	<!-- Style and JS -->
-	<script>
-		// This script helps us with github pages reference problem
-
-		// Test for location
-		// local is default in file references
-		// if we are on github, changes file references
-
-		// Set up variables for location test
-		const chasGitHub = 'chas-academy.github.io';
-		const gitHubRepoName = 'u06-trello-clone-axelra82';
-
-		// Find out if location is GitHub pages or not
-		const isGitHub = window.location.host === chasGitHub ? true : false;
-
-		// Define the relative root path
-		const cssFile = '/css/style.min.css?v=1.0';
-
-		// Create the elements we'll need in head
-		const styleEl = document.createElement('link');
-
-		// Set attributes for elements
-		styleEl.rel = 'stylesheet';
-		styleEl.href = !isGitHub ? cssFile : `/${gitHubRepoName}${cssFile}`;
-		
-
-		// Add style element to head 
-		document.head.appendChild(styleEl);
-
-		document.addEventListener('DOMContentLoaded', () => {
-			// List script file names
-			const fileNames = [
-				'ui',
-				'date-check-widget',
-				'arrays',
-				'generators',
-				'listeners',
-				'actions',
-				'init'
-			];
-
-			// Loop script filenames array and append to head with defer
-			for(const fileName of fileNames){
-				const scriptEl = document.createElement('script');
-				scriptEl.setAttribute("defer", "");
-				const jsFile = `/js/${fileName}.js`;
-				scriptEl.src = !isGitHub ? jsFile : `/${gitHubRepoName}${jsFile}`;
-				document.head.appendChild(scriptEl);
-			}			
-		});
-	</script>
+	<link rel="stylesheet" href="https://chas-academy.github.io/u06-trello-clone-axelra82/css/style.min.css">
+	<script defer src="https://chas-academy.github.io/u06-trello-clone-axelra82/js/ui.js"></script>
+	<script defer src="https://chas-academy.github.io/u06-trello-clone-axelra82/js/date-check-widget.js"></script>
+	<script defer src="https://chas-academy.github.io/u06-trello-clone-axelra82/js/arrays.js"></script>
+	<script defer src="https://chas-academy.github.io/u06-trello-clone-axelra82/js/generators.js"></script>
+	<script defer src="https://chas-academy.github.io/u06-trello-clone-axelra82/js/listeners.js"></script>
+	<script defer src="https://chas-academy.github.io/u06-trello-clone-axelra82/js/actions.js"></script>
+	<script defer src="https://chas-academy.github.io/u06-trello-clone-axelra82/js/init.js"></script>
 
 </head>
 
