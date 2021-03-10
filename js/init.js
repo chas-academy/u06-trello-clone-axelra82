@@ -19,14 +19,16 @@ const store = {
 		switch (action) {
 			case 'addList':
 				lists.push(data);
+				callback = lists.length-1;
 				break;
 
 			case 'deleteList':
-				listId = getSourceListId(data.target);
+				list = data.target.closest('.list');
+				listId = list.id.split('-')[2];
+
 				lists.splice(listId, 1);
 
 				// Visualize
-				list = data.target.closest('.list');
 				list.remove();
 
 				break;
@@ -40,8 +42,6 @@ const store = {
 				break;
 			
 			case 'updateTaskDate':
-				// taskId = getTaskId(data.e);
-				// sourceListId = getListId(data.e);
 				sourceListId = ids(data.uid).list;
 				taskId = ids(data.uid).task;
 
@@ -102,16 +102,6 @@ const store = {
 		}
 		return JSON.parse(this.get());
 	},
-}
-
-const ids = (data) => {
-	const list = data.split('-')[1];
-	const task = data.split('-')[3];
-
-	return {
-		list,
-		task
-	}
 }
 
 populateLists(store.lists());

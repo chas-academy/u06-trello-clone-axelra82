@@ -41,7 +41,7 @@ const makeSortable = () => {
 		},
 		stop: (e, ui) => {
 			// Sources
-			const sourceListId = getSourceListId(e.target);
+			const sourceListId = e.target.closest('.list').id.split('-')[2];
 			const sourceTaskIndex = ui.item.data('taskIndex');
 
 			// Targets
@@ -95,12 +95,17 @@ const taskDialog = () => {
 	});
 }
 
-const getSourceListId = e => {
-	const sourceList = e.closest('.list');
-	return Array.from(sourceList.closest('ul').children).indexOf(sourceList);
+const ids = (data) => {
+	const list = data.split('-')[1];
+	const task = data.split('-')[3];
+
+	return {
+		list,
+		task
+	}
 }
 
 const getTargetListId = e => {
-	const targetList = e.toElement.closest('.list');
-	return Array.from(targetList.closest('ul').children).indexOf(targetList);
+
+	return e.toElement.closest('.list').id.split('-')[2];
 }

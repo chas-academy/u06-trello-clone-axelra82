@@ -70,10 +70,13 @@ $('#add-list-btn').on('click', e => {
 	};
 	
 	// Mutate lists array
-	store.update(list, 'addList');
+	const listId = store.update(
+		list,
+		'addList'
+	);
 
 	// Visualize
-	const newList = renderList(list);
+	const newList = renderList(list, listId);
 	$('#lists-container').append(newList);
 
 	makeSortable();
@@ -85,7 +88,10 @@ $('#lists-container').on('click', 'button.delete-list-btn', e => {
 	
 	if(accept){
 		// Mutate lists array
-		store.update(e, 'deleteList');
+		store.update(
+			e,
+			'deleteList'
+		);
 	}
 });
 
@@ -94,7 +100,9 @@ $('#lists-container').on('click', 'button.add-task-btn', e => {
 	const title = prompt('Task title', 'Do something');
 	const description = prompt('Task description', 'Describe it');
 	
-	const listId = e.target.closest('.list').id.match(/\d+/)[0];
+	const listId = e.target.closest('.list').id.split('-')[2];
+
+	console.log(e.target.closest('.list').id.split('-')[2]);
 
 	const task = {
 		title: title,
